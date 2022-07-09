@@ -32,7 +32,7 @@ export default function Cart() {
       component={Link}
       to="/cart"
     >
-      <Badge badgeContent={badgeContent} color="secondary">
+      <Badge badgeContent={badgeContent} overlap="rectangular" color="secondary">
         <CartIcon/>
       </Badge>
     </IconButton>
