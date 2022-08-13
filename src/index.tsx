@@ -6,15 +6,17 @@ import {store} from 'store/store';
 import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 axios.interceptors.response.use(
   response => {
     return response;
   },
-  function(error) {
-    if (error?.response?.status === 400) {
-      alert(error.response.data?.data);
+  function(error: AxiosError) {
+    console.log(JSON.stringify(error));
+    
+    if ([400, 401, 403].includes(error?.response?.status as number)) {
+      alert(JSON.stringify(error?.response?.data));
     }
 
     return Promise.reject(error?.response ?? error);
